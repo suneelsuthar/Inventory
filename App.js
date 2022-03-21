@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Navigation from "./src/navigation";
+import { Provider as PaperProvider } from "react-native-paper";
+import { useFonts } from "expo-font";
 
 export default function App() {
+  const [loaded] = useFonts({
+    Roboto_Black: require("./assets/Fonts/Roboto-Black.ttf"),
+    Roboto_Bold: require("./assets/Fonts/Roboto-Bold.ttf"),
+    Roboto_Italic: require("./assets/Fonts/Roboto-Italic.ttf"),
+    Roboto_Light: require("./assets/Fonts/Roboto-Light.ttf"),
+    Roboto_Medium: require("./assets/Fonts/Roboto-Medium.ttf"),
+    Roboto_Regular: require("./assets/Fonts/Roboto-Regular.ttf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <Navigation />
+    </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
